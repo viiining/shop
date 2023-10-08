@@ -1,8 +1,9 @@
 class Cart
-  attr_reader :items
+  attr_reader :items, :coupon
 
   def initialize(items = [])
     @items = items
+    @coupon = nil
   end
 
   def add_item(book_id)
@@ -19,8 +20,20 @@ class Cart
     @items.empty?
   end
 
+  def apply_coupon(coupon)
+    if coupon.discount_amount <= total_price
+      @coupon = coupon
+    else
+      @coupon = nil
+    end
+  end
+
   def total_price
-    items.sum(&:price)
+    total = items.sum(&:price)
+    if coupon
+      total -= coupon.discount_amount
+    end
+    total
   end
 
   def serialize
@@ -39,5 +52,5 @@ class Cart
         CartItem.new(item_hash["book_id"], item_hash["quantity"])
       }
     end
-  end  
+  end
 end

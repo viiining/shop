@@ -44,6 +44,20 @@ RSpec.describe Cart, type: :model do
 
       expect(cart.total_price).to be 1000      
     end
+
+    it "可搭配優惠券使用折扣" do
+      cart = Cart.new
+      book1 = Book.create(title: "Hello", price: 200)
+      coupon = Coupon.new(name: "DISCOUNT100", discount_amount: 100)
+  
+      2.times {
+        cart.add_item(book1.id)
+      }
+      
+      cart.apply_coupon(coupon)
+  
+      expect(cart.total_price).to eq(300)
+    end
   end
 
   describe "購物車進階功能" do
