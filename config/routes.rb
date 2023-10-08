@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'books#index'
+  resources :books, except: [:show]
+  resources :coupons
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resource :cart, only:[:show, :destroy] do
+    collection do
+      post :add, path:'add/:id'
+    end
+  end
 end

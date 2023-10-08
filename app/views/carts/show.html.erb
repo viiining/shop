@@ -1,0 +1,36 @@
+<div class="w-full mx-auto md:w-2/3">
+  <div class="flex flex-col items-center md:flex-row md:justify-between">
+    <h1 class="mb-5 text-4xl font-bold md:mb-0">購物車</h1>
+    <div class="flex space-x-5">
+      <%= link_to '繼續選購', books_path, class: "add-btn" %>
+      <%= link_to '結帳', '#', class: "save-btn" %>
+    </div>
+  </div>
+  <table class="w-full mt-5">
+    <thead class="text-lg font-semibold">
+      <tr>
+        <th class="py-3 pr-3 text-left md:pr-5">書籍名稱</th>
+        <th class="py-3 pr-3 text-left md:pr-5">數量</th>
+        <th class="py-3 pr-3 text-left md:pr-5">單價</th>
+        <th class="py-3 pr-3 text-left md:pr-5">小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.items.each do |item| %>
+        <tr>
+          <td class="text-left"><%= item.book.title %></td>
+          <td class="text-left"><%= item.quantity %></td>
+          <td class="text-left md:pr-5">NT $<%= item.book.price %></td>
+          <td class="text-left">NT $<%= item.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot class="border-t border-gray-300">
+      <tr class="text-lg font-semibold">
+        <td colspan="3">總計</td>
+        <td class="text-left">NT $<%= @cart.total_price %></td>
+      </tr>
+    </tfoot>
+  </table>
+  <%= link_to "清空購物車", cart_path, data: {turbo_method: :delete}, class: "danger-btn text-sm mt-5" %>
+</div>
