@@ -3,7 +3,11 @@
     <h1 class="mb-5 text-4xl font-bold md:mb-0">購物車</h1>
     <div class="flex space-x-5">
       <%= link_to '繼續選購', books_path, class: "add-btn" %>
-      <%= link_to '您的優惠券', coupons_index_path, class: "save-btn" %>
+      <% if @cart.items.any? %>
+        <%= link_to '您的優惠券', coupons_index_path, class: "save-btn" %>
+      <% else %>
+        <p>立即選購！</p>
+      <% end %>
     </div>
   </div>
   <table class="w-full mt-5">
