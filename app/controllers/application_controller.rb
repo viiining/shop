@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   before_action :init_cart
 
+  def after_sign_in_path_for(resource)
+    if resource.admin?
+      admin_dashboard_index_path
+    else
+      books_path
+    end
+  end
+
   protected
   def authenticate_admin
     unless current_user.admin?

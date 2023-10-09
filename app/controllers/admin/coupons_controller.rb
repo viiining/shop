@@ -14,7 +14,7 @@ class Admin::CouponsController < ApplicationController
   def create
     @coupon = Coupon.new(coupon_params)
     if @coupon.save
-      redirect_to coupons_path, notice: "新增成功"
+      redirect_to admin_coupons_path, notice: "新增成功"
     else
       render :new
     end
@@ -25,7 +25,7 @@ class Admin::CouponsController < ApplicationController
 
   def update
     if @coupon.update(coupon_params)
-      redirect_to coupons_path, notice: "更新成功"
+      redirect_to admin_coupons_path, notice: "更新成功"
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class Admin::CouponsController < ApplicationController
 
   def destroy
     @coupon.destroy
-    redirect_to coupons_path, notice: "已刪除"
+    redirect_to admin_coupons_path, notice: "已刪除"
   end
 
   private

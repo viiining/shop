@@ -1,19 +1,18 @@
-<%= form_with(model: book)  do |form| %>
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="my-5">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+<div class="my-5">
+  <%= form.label :title %>
+  <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+</div>
+<div class="my-5">
+  <%= form.label :price %>
+  <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+</div>
 
-  <div class="inline">
-    <% if book.new_record? %>
-      <%= form.submit "建立書籍", class: "add-btn" %>
-    <% else %>
-      <%= form.submit "更新", class: "add-btn" %>
-    <% end %>
-  </div>
-<% end %>
+<div class="inline">
+  <% if @book.new_record? %>
+    <%= form.submit "建立書籍", class: "add-btn" %>
+  <% else %>
+    <%= form.submit "更新", class: "add-btn" %>
+  <% end %>
+</div>
+
 
