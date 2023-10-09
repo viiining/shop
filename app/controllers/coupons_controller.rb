@@ -10,7 +10,7 @@ class CouponsController < ApplicationController
   end
 
   def create
-    @coupon = Coupon.new(book_params)
+    @coupon = Coupon.new(coupon_params)
     if @coupon.save
       redirect_to coupons_path, notice: "新增成功"
     else
@@ -22,7 +22,7 @@ class CouponsController < ApplicationController
   end
 
   def update
-    if @coupon.update(book_params)
+    if @coupon.update(coupon_params)
       redirect_to coupons_path, notice: "更新成功"
     else
       render :edit
@@ -37,7 +37,6 @@ class CouponsController < ApplicationController
   private
   def find_coupon
     @coupon = Coupon.find_by(id: params[:id])
-    redirect_to coupons_path, notice: "無此商品" unless @coupon
   end
 
   def coupon_params

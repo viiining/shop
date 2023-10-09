@@ -1,0 +1,44 @@
+<div class="container mx-auto">
+  <div class="mb-10 w-fit">
+    <% if notice.present? %>
+    <div class="px-4 py-3 text-green-700 bg-green-100 border border-green-400 rounded" role="alert">
+      <span class="block sm:inline"><%= notice %></span>
+    </div>
+    <% end %>
+  </div>
+  
+  <div class="flex flex-col items-center mb-4 md:flex-row">
+    <%= link_to "新增優惠券", new_coupon_path, class: "add-btn mb-2 md:mb-0" %>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-auto">
+      <thead class="text-lg font-semibold">
+        <tr>
+          <th class="py-5 pr-5 text-left">優惠券名稱</th>
+          <th class="py-5 pr-5 text-left">折扣金額</th>
+          <th class="py-5 pr-5 text-left">最後使用日</th>
+          <th class="py-5 pr-5 text-left">可使用次數</th>
+          <th class="py-5 pr-5 text-left">目前使用次數</th>
+          <th class="py-5 pr-5 text-left">目前使用狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @coupons.each do |coupon| %>
+          <tr>
+            <td><%= coupon.name %></td>
+            <td><%= coupon.discount_amount %></td>
+            <td><%= coupon.expiration_date %></td>
+            <td><%= coupon.max_usage_count %></td>
+            <td><%= coupon.used_count %></td>
+            <td><%= coupon.is_used %></td>
+            <td class="flex items-center justify-center pt-1">
+              <%= link_to '編輯', edit_coupon_path(coupon), class: "save-btn text-xs mr-2" %>
+              <%= button_to "刪除", coupon, method: :delete, data: { confirm: "確定刪除?" }, class: "danger-btn text-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
