@@ -1,5 +1,6 @@
-class CouponsController < ApplicationController
+class Admin::CouponsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_admin
   before_action :find_coupon, only: [:edit, :update, :destroy]
 
   def index

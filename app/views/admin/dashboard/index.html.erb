@@ -1,0 +1,15 @@
+<section class="flex flex-col">
+  <div class="mb-10">
+    <h1 class="text-4xl font-bold">Dashboard</h1>
+  </div>
+
+  <div class="flex flex-col my-5">
+    <h2 class="text-2xl font-bold">Books</h2>
+    <%= link_to "Manage Books", admin_books_path, class: "save-btn w-fit" %>
+  </div>
+
+  <div class="flex flex-col my-5">
+    <h2 class="text-2xl font-bold">Coupons</h2>
+    <%= link_to "Manage Coupons", admin_coupons_path, class: "save-btn w-fit" %>
+  </div>
+</section>

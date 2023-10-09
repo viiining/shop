@@ -1,0 +1,30 @@
+<div class="container mx-auto">  
+  <div class="flex flex-col items-center mb-4 md:flex-row">
+    <%= link_to "新增書籍", new_admin_book_path, class: "add-btn mb-2 md:mb-0" %>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full table-auto">
+      <thead class="text-lg font-semibold">
+        <tr>
+          <th class="py-5 pr-5 text-left">書籍名稱</th>
+          <th class="py-5"></th>
+          <th class="py-5 pr-5 text-left">書籍售價</th>
+          <th class="py-5"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td>NT $<%= book.price %></td>
+            <td class="flex items-center justify-center pt-1">
+              <%= link_to '編輯', edit_admin_book_path(book), class: "save-btn text-xs mr-2" %>
+              <%= button_to "刪除", book, method: :delete, data: { confirm: "確定刪除?" }, class: "danger-btn text-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
