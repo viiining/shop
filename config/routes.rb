@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'books#index'
+  devise_for :users
+  root 'pages#index'
   resources :books, except: [:show]
   resources :coupons, except: [:show]
 

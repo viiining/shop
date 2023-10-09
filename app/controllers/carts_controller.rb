@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
   def add
     @cart.add_item(params[:id])
     session[:addtocart] = @cart.serialize
