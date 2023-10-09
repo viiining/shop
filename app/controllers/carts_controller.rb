@@ -1,5 +1,24 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
+
+  def show
+    @coupon = Coupon.all
+  end
+
+  def apply_coupon
+    coupon_id = params[:coupon_id]
+
+    @coupon = Coupon.all
+
+    selected_coupon = @coupon.find { |coupon| coupon.id.to_s == coupon_id }
+
+    if selected_coupon.present?
+      session[:selected_coupon] = selected_coupon
+    end
+
+    redirect_to cart_path(params[:id])
+  end
+
   def add
     @cart.add_item(params[:id])
     session[:addtocart] = @cart.serialize

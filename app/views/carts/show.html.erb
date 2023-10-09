@@ -3,7 +3,7 @@
     <h1 class="mb-5 text-4xl font-bold md:mb-0">購物車</h1>
     <div class="flex space-x-5">
       <%= link_to '繼續選購', books_path, class: "add-btn" %>
-      <%= link_to '結帳', '#', class: "save-btn" %>
+      <%= link_to '您的優惠券', coupons_index_path, class: "save-btn" %>
     </div>
   </div>
   <table class="w-full mt-5">
@@ -28,7 +28,14 @@
     <tfoot class="border-t border-gray-300">
       <tr class="text-lg font-semibold">
         <td colspan="3">總計</td>
-        <td class="text-left">NT $<%= @cart.total_price %></td>
+        <% if session[:selected_coupon].present? %>
+          <% selected_coupon = session[:selected_coupon] %>
+          <% discount_amount = selected_coupon["discount_amount"] %>
+          <% total_price_after_discount = @cart.total_price - discount_amount %>
+          <td class="text-left">NT $<%= total_price_after_discount %></td>
+        <% else %>
+          <td class="text-left">NT $<%= @cart.total_price %></td>
+        <% end %>
       </tr>
     </tfoot>
   </table>

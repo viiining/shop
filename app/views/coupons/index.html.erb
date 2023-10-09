@@ -1,0 +1,21 @@
+<div>
+  <div class="flex justify-around mt-4 space-x-10">
+    <% @coupon.each do |coupon| %>
+      <div class="flex flex-col p-4 mb-4 border border-gray-300 rounded-lg">
+        <label class="text-lg font-bold">優惠券名稱: <%= coupon.name %></label>
+        <p class="text-gray-600">過期日期: <%= coupon.expiration_date.strftime("%Y年%m月%d日") %></p>
+        <p class="text-gray-600">最大使用次數: <%= coupon.max_usage_count %> 次</p>
+        <p class="text-gray-600">折扣金額: NT $<%= coupon.discount_amount %></p>
+
+        <div class="mt-2">
+          <%= radio_button_tag 'selected_coupon_id', coupon.id, false, class: 'form-radio h-4 w-4 text-indigo-600 border-indigo-600' %>
+          <label for="coupon_<%= coupon.id %>" class="ml-2 text-gray-800">選擇此優惠券</label>
+        </div>
+
+        <%= link_to '套用此優惠券', apply_coupon_cart_path(coupon_id: coupon.id), data: { turbo_method: :post }, class: "save-btn w-fit mt-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

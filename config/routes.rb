@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'pages#index'
+  get 'coupons/index'
 
   namespace :admin, path: "asdfe" do
     get 'dashboard/index'
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add, path:'add/:id'
+    end
+    member do
+      post 'apply_coupon', to: 'carts#apply_coupon'
     end
   end
 end
