@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     member do
       post 'apply_coupon', to: 'carts#apply_coupon'
+      delete 'cancel_coupon', to: 'carts#cancel_coupon'
     end
   end
 end

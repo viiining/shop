@@ -19,6 +19,11 @@ class CartsController < ApplicationController
     redirect_to cart_path(params[:id])
   end
 
+  def cancel_coupon
+    session[:selected_coupon] = nil
+    redirect_to cart_path(params[:id])
+  end
+
   def add
     @cart.add_item(params[:id])
     session[:addtocart] = @cart.serialize
@@ -28,6 +33,7 @@ class CartsController < ApplicationController
 
   def destroy
     session[:addtocart] = nil
+    session[:selected_coupon] = nil
     redirect_to books_path, notice: "購物車已清空"
   end
 end

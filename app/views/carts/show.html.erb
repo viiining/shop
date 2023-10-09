@@ -37,6 +37,12 @@
           <td class="text-left">NT $<%= @cart.total_price %></td>
         <% end %>
       </tr>
+      <% if session[:selected_coupon].present? %>
+        <tr>
+          <td class="pt-10">已套用優惠券: <%= selected_coupon["name"] %></td>
+          <td class="pt-10"><%= button_to '取消此優惠券', cancel_coupon_cart_path, method: :delete, data: { turbo: false }, class: 'save-btn text-sm' %></td>
+        </tr>
+      <% end %>
     </tfoot>
   </table>
   <%= link_to "清空購物車", cart_path, data: {turbo_method: :delete}, class: "danger-btn text-sm mt-5" %>
