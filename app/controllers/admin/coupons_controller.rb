@@ -42,6 +42,6 @@ class Admin::CouponsController < ApplicationController
   end
 
   def coupon_params
-    params.require(:coupon).permit(:name, :discount_amount, :expiration_date, :max_usage_count, :used_count, :is_used)
+    params.require(:coupon).permit(:name, :discount_amount, :expiration_date, :max_usage_count, :used_count, :is_used, :user_id)
   end
 end

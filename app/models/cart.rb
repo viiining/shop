@@ -8,7 +8,7 @@ class Cart
 
   def add_item(book_id)
     found_item = items.find { |item| item.book_id == book_id }
-
+  
     if found_item
       found_item.increment
     else
