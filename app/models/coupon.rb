@@ -5,4 +5,6 @@ class Coupon < ApplicationRecord
   validates :max_usage_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :used_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  has_many :user_coupons
+  has_many :users, through: :user_coupons
 end
