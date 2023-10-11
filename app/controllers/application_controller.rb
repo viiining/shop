@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
 
   private
   def init_cart
-    @cart = Cart.transfer_hash(session[:addtocart])
+    @cart = Cart.transfer_hash(session[:order_info])
   end
 end

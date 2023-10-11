@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :books, only: [:index]
+  resources :orders, only: [:create]
 
   resource :cart, only:[:show, :destroy] do
     collection do
