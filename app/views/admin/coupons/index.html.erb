@@ -13,7 +13,6 @@
           <th class="py-5 pr-5 text-left">最後使用日</th>
           <th class="py-5 pr-5 text-left">可使用次數</th>
           <th class="py-5 pr-5 text-left">目前使用次數</th>
-          <th class="py-5 pr-5 text-left">目前使用狀態</th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +23,6 @@
             <td><%= coupon.expiration_date %></td>
             <td><%= coupon.max_usage_count %></td>
             <td><%= coupon.used_count %></td>
-            <td><%= coupon.is_used %></td>
             <td class="flex items-center justify-center pt-1">
               <%= link_to '編輯', edit_admin_coupon_path(coupon), class: "save-btn text-xs mr-2" %>
               <%= button_to "刪除", admin_coupon_path(coupon), method: :delete, data: { confirm: "確定刪除?" }, class: "danger-btn text-xs" %>

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  
   def create
     selected_coupon = session[:selected_coupon]
     user_coupon_id = nil
@@ -23,7 +24,9 @@ class OrdersController < ApplicationController
   
       if @order.save
         session[:order_info] = nil
+        session[:selected_coupon] = nil
         flash[:notice] = "訂單建立成功！"
+        increment_coupon_used_count(selected_coupon) if selected_coupon.present?
         redirect_to books_path
       else
         flash[:alert] = "訂單建立失敗請確認！"
@@ -54,5 +57,18 @@ class OrdersController < ApplicationController
   
     total_price
   end
+  
+  def increment_coupon_used_count(coupon_data)
+    coupon = Coupon.find(coupon_data["id"])
+    
+    if coupon.present?
+      if coupon.used_count < coupon.max_usage_count && coupon.expiration_date >= Date.today
+        coupon.used_count += 1
+        coupon.save
+      else
+        flash[:alert] = "Coupon 已超过最大使用次数或已过期。"
+      end
+    end
+  end  
 end
 
